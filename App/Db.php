@@ -9,7 +9,7 @@ class Db
 
     public function __construct()
     {
-        $this->dbh = new \PDO('mysql:host=172.18.0.3;dbname=php2;', 'root', 'root');
+        $this->dbh = new \PDO('mysql:host=mysql;dbname=php2;', 'root', 'root');
     }
 
     public function query($sql, $params = [], $class = null)
