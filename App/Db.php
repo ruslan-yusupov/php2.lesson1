@@ -12,29 +12,26 @@ class Db
         $this->dbh = new \PDO('mysql:host=mysql;dbname=php2;', 'root', 'root');
     }
 
-    public function query($sql, $params = [], $class = null)
+    public function query(string $sql, $params = [], $class = null): array
     {
         $sth = $this->dbh->prepare($sql);
-        $sth->execute($params);
-        $sth->setFetchMode(\PDO::FETCH_ASSOC);
-        $data = $sth->FetchAll();
+        $sth->bindParam(':amount', $params[':amount'], \PDO::PARAM_INT);
+        $sth->execute();
 
         if (null === $class) {
-            return $data;
+            $sth->setFetchMode(\PDO::FETCH_ASSOC);
+        } else {
+            $sth->setFetchMode(\PDO::FETCH_CLASS, $class);
         }
 
-        $ret = [];
+        return $sth->FetchAll();
+    }
 
-        foreach ($data as $row) {
-            $obj = new $class;
-            foreach ($row as $property => $value) {
-                $obj->$property = $value;
-            }
-            $ret[] = $obj;
-        }
+    public function execute(string $query, $params = []): bool
+    {
+        $sth = $this->dbh->prepare($query);
 
-        return $ret;
-
+        return $sth->execute($params);
     }
 
 }
