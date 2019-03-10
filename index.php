@@ -1,8 +1,10 @@
 <?php
 
+use App\Models\Article;
+
 require __DIR__ . '/autoload.php';
 
-$db = new \App\Db();
-$data = $db->query('SELECT * FROM news', [], 'App\Models\Article');
+$articles = Article::findAll();
 
-var_dump($data);
+
+var_dump($articles);
