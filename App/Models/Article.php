@@ -17,14 +17,9 @@ class Article extends Model
     {
 
         $db = new Db;
+        $sql = 'SELECT id, title FROM ' . self::$table . ' ORDER BY id DESC LIMIT ' . $amount;
 
-        $sql = 'SELECT * FROM ' . self::$table . ' ORDER BY id DESC LIMIT :amount';
-
-        $data = $db->query($sql, [':amount' => $amount]);
-
-        var_dump($data); // empty
-
-        return $data;
+        return $db->query($sql);;
 
     }
 

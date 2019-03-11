@@ -1,10 +1,8 @@
 <?php
+require __DIR__ . '/autoload.php';
 
 use App\Models\Article;
 
-require __DIR__ . '/autoload.php';
+$articles = Article::findLastNews(3);
 
-
-$db = new \App\Db;
-
-Article::findLastNews(3);
+include __DIR__ . '/templates/news.php';

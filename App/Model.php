@@ -26,7 +26,7 @@ abstract class Model
 
         $result = $db->query($sql, [':id' => $id]);
 
-        return !empty($result) ? $result : false ;
+        return !empty($result) ? $result[0] : false ;
     }
 
 }
