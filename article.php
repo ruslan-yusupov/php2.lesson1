@@ -2,7 +2,7 @@
 
 use App\Models\Article;
 
-if (!isset($_GET['id']) || empty($_GET['id'])) {
+if (empty($_GET['id'])) {
 
     header('Location: /');
     die;
@@ -15,4 +15,4 @@ $articleId = $_GET['id'];
 
 $article = Article::findById($articleId);
 
-include __DIR__ . '/templates/article.php';
+include __DIR__ . '/App/Templates/article.php';

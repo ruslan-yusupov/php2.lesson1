@@ -18,7 +18,7 @@
         <?php
         foreach ($articles as $article) { ?>
             <li>
-                <a href="article.php?id=<?php echo $article['id']; ?>">
+                <a href="/article.php?id=<?php echo $article['id']; ?>">
                     <?php echo $article['title']; ?>
                 </a>
             </li>
@@ -26,7 +26,9 @@
         </ul>
 
     <?php } else { ?>
+
         <p>Новости отсутствуют.</p>
+
     <?php } ?>
 
 </body>

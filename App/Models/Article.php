@@ -19,7 +19,7 @@ class Article extends Model
         $db = new Db;
         $sql = 'SELECT id, title FROM ' . self::$table . ' ORDER BY id DESC LIMIT ' . $amount;
 
-        return $db->query($sql);;
+        return $db->query($sql);
 
     }
 
