@@ -29,4 +29,32 @@ abstract class Model
         return !empty($result) ? $result[0] : false ;
     }
 
+    public function insert(): void
+    {
+
+        $db = new Db;
+
+        $props = get_object_vars($this);
+        $fields = [];
+        $binds = [];
+        $data = [];
+
+        foreach ($props as $name => $value) {
+
+            $fields[] = $name;
+            $binds[] = ':' . $name;
+            $data[':' . $name] = $value;
+
+        }
+
+        $sql = '
+            INSERT INTO ' . static::$table .
+            '(' . implode(', ', $fields) . ') 
+            VALUES (' . implode(', ', $binds) . ')';
+
+        $db->execute($sql, $data);
+        $this->id = $db->lastInsertId();
+
+    }
+
 }
