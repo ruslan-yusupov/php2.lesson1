@@ -9,17 +9,27 @@ abstract class Model
 
     public $id;
 
+    /**
+     * @return array
+     */
     public static function findAll(): array
     {
+
         $db = new Db;
 
         $sql = 'SELECT * FROM ' . static::$table;
 
         return $db->query($sql, [], static::class);
+
     }
 
+    /**
+     * @param int $id
+     * @return object|bool
+     */
     public static function findById(int $id)
     {
+
         $db = new Db;
 
         $sql = 'SELECT * FROM ' . static::$table . ' WHERE id = :id';
@@ -27,9 +37,13 @@ abstract class Model
         $result = $db->query($sql, [':id' => $id], static::class);
 
         return !empty($result) ? $result[0] : false;
+
     }
 
-    public function insert()
+    /**
+     * @return void
+     */
+    public function insert(): void
     {
 
         $db = new Db;
@@ -59,17 +73,20 @@ abstract class Model
 
     }
 
-    public function update()
+    /**
+     * @return void
+     */
+    public function update(): void
     {
 
         if (null === $this->id) {
-            return false;
+            return;
         }
 
         $model = static::findById($this->id);
 
         if (false === $model) {
-            return false;
+            return;
         }
 
         $db = new Db;
@@ -82,19 +99,56 @@ abstract class Model
 
             if ('id' !== $name) {
                 $fields[] = $name . '=:' . $name;
-                $data[':' . $name] = $value;
             }
+
+            $data[':' . $name] = $value;
 
         }
 
         $sql = '
             UPDATE ' . static::$table . ' 
             SET ' . implode(', ', $fields) . ' 
-            WHERE id=' . $model->id;
+            WHERE id=:id';
 
         $db->execute($sql, $data);
 
-        return null;
+    }
+
+    /**
+     * @return void
+     */
+    public function delete(): void
+    {
+
+        if (null === $this->id) {
+            return;
+        }
+
+        $model = static::findById($this->id);
+
+        if (false === $model) {
+            return;
+        }
+
+        $db = new Db;
+        $sql = 'DELETE FROM ' . static::$table . ' WHERE id=:id';
+
+        $db->execute($sql, [':id' => $this->id]);
 
     }
+
+    /**
+     * @return void
+     */
+    public function save(): void
+    {
+
+        if (null !== $this->id) {
+            $this->update();
+        } else {
+            $this->insert();
+        }
+
+    }
+
 }
