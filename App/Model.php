@@ -41,9 +41,11 @@ abstract class Model
 
         foreach ($props as $name => $value) {
 
-            $fields[] = $name;
-            $binds[] = ':' . $name;
-            $data[':' . $name] = $value;
+            if ('id' !== $name) {
+                $fields[] = $name;
+                $binds[] = ':' . $name;
+                $data[':' . $name] = $value;
+            }
 
         }
 
@@ -57,4 +59,8 @@ abstract class Model
 
     }
 
+    public function update()
+    {
+        //TODO: update method
+    }
 }
