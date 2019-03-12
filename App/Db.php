@@ -9,7 +9,13 @@ class Db
 
     public function __construct()
     {
-        $this->dbh = new \PDO('mysql:host=mysql;dbname=php2;', 'root', 'root');
+        $config = new Config;
+
+        $dsn = 'mysql:host=' . $config->data['db']['host'] . ';dbname=' . $config->data['db']['dbname'];
+        $userName = $config->data['db']['username'];
+        $password = $config->data['db']['password'];
+
+        $this->dbh = new \PDO($dsn, $userName, $password);
     }
 
     public function query(string $sql, array $params = [], string $class = null): array

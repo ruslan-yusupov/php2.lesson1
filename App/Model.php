@@ -24,12 +24,12 @@ abstract class Model
 
         $sql = 'SELECT * FROM ' . static::$table . ' WHERE id = :id';
 
-        $result = $db->query($sql, [':id' => $id]);
+        $result = $db->query($sql, [':id' => $id], static::class);
 
-        return !empty($result) ? $result[0] : false ;
+        return !empty($result) ? $result[0] : false;
     }
 
-    public function insert(): void
+    public function insert()
     {
 
         $db = new Db;
@@ -61,6 +61,40 @@ abstract class Model
 
     public function update()
     {
-        //TODO: update method
+
+        if (null === $this->id) {
+            return false;
+        }
+
+        $model = static::findById($this->id);
+
+        if (false === $model) {
+            return false;
+        }
+
+        $db = new Db;
+
+        $props = get_object_vars($this);
+        $fields = [];
+        $data = [];
+
+        foreach ($props as $name => $value) {
+
+            if ('id' !== $name) {
+                $fields[] = $name . '=:' . $name;
+                $data[':' . $name] = $value;
+            }
+
+        }
+
+        $sql = '
+            UPDATE ' . static::$table . ' 
+            SET ' . implode(', ', $fields) . ' 
+            WHERE id=' . $model->id;
+
+        $db->execute($sql, $data);
+
+        return null;
+
     }
 }

@@ -6,20 +6,20 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>
-        <?php echo !empty($article) ? $article['title'] : 'Новость не найдена'; ?>
+        <?php echo (false !== $article) ? $article->title : 'Новость не найдена'; ?>
     </title>
 </head>
 <body>
 
     <?php
 
-    if (!empty($article)) { ?>
+    if (false !== $article) { ?>
 
         <h1>
-            <?php echo $article['title']; ?>
+            <?php echo $article->title; ?>
         </h1>
         <p>
-            <?php echo  $article['content']; ?>
+            <?php echo  $article->content; ?>
         </p>
 
     <?php } else { ?>
