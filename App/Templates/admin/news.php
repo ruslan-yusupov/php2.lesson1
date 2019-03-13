@@ -19,9 +19,12 @@
         <?php
         foreach ($articles as $article) { ?>
             <li>
-                <a href="/article.php?id=<?php echo $article->id; ?>">
+                <h2>
                     <?php echo $article->title; ?>
-                </a>
+                </h2>
+                <p>
+                    <?php echo $article->content; ?>
+                </p>
                 <a href="/admin/update.php?id=<?php echo $article->id; ?>" class="admin-button">
                     Редактировать
                 </a>
