@@ -15,4 +15,4 @@ $articleId = $_GET['id'];
 
 $article = Article::findById($articleId);
 
-include __DIR__ . '/App/Templates/article.php';
+include __DIR__ . '/App/Templates/public/article.php';

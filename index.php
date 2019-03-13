@@ -6,4 +6,4 @@ use App\Models\Article;
 
 $articles = Article::findLastNews(3);
 
-include __DIR__ . '/App/Templates/news.php';
+include __DIR__ . '/App/Templates/public/news.php';

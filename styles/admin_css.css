@@ -1,0 +1,16 @@
+li {
+    margin: 20px 0;
+}
+
+.admin-button {
+    margin: 0 20px;
+    padding: 5px;
+    border: 1px #cecece solid;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.admin-button:active {
+    background-color: #cecece;
+    color: #ffffff;
+}

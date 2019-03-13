@@ -18,8 +18,8 @@
         <?php
         foreach ($articles as $article) { ?>
             <li>
-                <a href="/article.php?id=<?php echo $article['id']; ?>">
-                    <?php echo $article['title']; ?>
+                <a href="/article.php?id=<?php echo $article->id; ?>">
+                    <?php echo $article->title; ?>
                 </a>
             </li>
         <?php } ?>
