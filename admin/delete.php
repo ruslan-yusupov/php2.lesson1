@@ -18,3 +18,4 @@ $article = Article::findById($articleId);
 $article->delete();
 
 header('Location: /admin/');
+die;

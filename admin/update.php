@@ -29,4 +29,3 @@ if (null !== $id) {
 }
 
 include __DIR__ . '/../App/Templates/admin/article_update.php';
-
