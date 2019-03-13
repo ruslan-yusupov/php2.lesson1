@@ -15,14 +15,13 @@ $articleId = $_GET['id'];
 
 $article = Article::findById($articleId);
 
-$id = $_POST['id'] ?: null;
+$id = !empty($_POST['id']) ? $_POST['id'] : null;
 
 if (null !== $id) {
 
     $article->delete();
 
-    //TODO не удаляется объект
-
+    $article = Article::findById($articleId);
 }
 
 include __DIR__ . '/../App/Templates/admin/article_delete.php';

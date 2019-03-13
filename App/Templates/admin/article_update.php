@@ -11,6 +11,7 @@
 </head>
 <body>
 
+    <h1>Редактирование новости</h1>
     <?php
 
     if (false !== $article) { ?>

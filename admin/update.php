@@ -15,9 +15,9 @@ $articleId = $_GET['id'];
 
 $article = Article::findById($articleId);
 
-$id = $_POST['id'] ?: null;
-$title = $_POST['title'] ?: null;
-$content = $_POST['content'] ?: null;
+$id = !empty($_POST['id']) ? $_POST['id'] : null;
+$title = !empty($_POST['title']) ? $_POST['title'] : null;
+$content = !empty($_POST['content']) ? $_POST['content'] : null;
 
 if (null !== $id) {
 
