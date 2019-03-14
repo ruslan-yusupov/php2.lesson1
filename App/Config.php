@@ -5,7 +5,7 @@ namespace App;
 class Config
 {
 
-    public static $data;
+    protected static $data;
     protected static $instance;
 
     protected function __construct()
@@ -39,7 +39,7 @@ class Config
     /**
      * @return array
      */
-    public function getSettings() :array
+    public function getSettings(): array
     {
         return static::$data;
     }
