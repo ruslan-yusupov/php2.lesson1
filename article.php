@@ -4,7 +4,7 @@ use App\Models\Article;
 
 if (empty($_GET['id'])) {
 
-    header('Location: /');
+    header('Location: /index.php');
     die;
 
 }
