@@ -16,23 +16,22 @@ class Config
 
     }
 
+
     /**
-     * @return Config
+     * @return mixed
      */
-    public static function getInstance(): Config
+    public static function getInstance()
     {
 
         if (null !== static::$instance) {
 
             return static::$instance;
 
-        } else {
-
-            static::$instance = new Config;
-
-            return static::$instance;
-
         }
+
+        static::$instance = new static;
+
+        return static::$instance;
 
     }
 
