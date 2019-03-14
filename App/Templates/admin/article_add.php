@@ -12,6 +12,7 @@
 <body>
 
     <h1>Добавление новости</h1>
+
     <form action="/admin/add.php" method="post">
 
         <label for="title">
@@ -33,5 +34,6 @@
     <p>
         <a href="/admin/">Назад к списку</a>
     </p>
+
 </body>
 </html>

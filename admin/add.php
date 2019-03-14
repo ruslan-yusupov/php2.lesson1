@@ -14,7 +14,7 @@ if (null !== $title && null !== $content) {
     $article->content = $content;
     $article->insert();
 
-    header('Location: /admin/');
+    header('Location: /admin/index.php');
     die;
 
 }

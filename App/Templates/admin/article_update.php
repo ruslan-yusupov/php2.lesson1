@@ -23,13 +23,22 @@
             <label for="title">
                 Заголовок
                 <br>
-                <input type="text" id="title" name="title" size="100" value="<?php echo $article->title; ?>">
+                <input type="text"
+                       id="title"
+                       name="title"
+                       required
+                       size="100"
+                       value="<?php echo $article->title; ?>">
             </label>
             <br>
             <label for="content">
                 Текст
                 <br>
-                <textarea id="content" name="content" rows="10" cols="100"><?php echo $article->content; ?></textarea>
+                <textarea id="content"
+                          name="content"
+                          required
+                          rows="10"
+                          cols="100"><?php echo $article->content; ?></textarea>
             </label>
             <br>
             <button type="submit">Редактировать</button>

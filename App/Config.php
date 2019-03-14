@@ -8,6 +8,9 @@ class Config
     protected static $data;
     protected static $instance;
 
+    /**
+     * Config constructor.
+     */
     protected function __construct()
     {
 
@@ -18,7 +21,7 @@ class Config
 
 
     /**
-     * @return mixed
+     * @return static
      */
     public static function getInstance()
     {
