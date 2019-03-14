@@ -5,14 +5,43 @@ namespace App;
 class Config
 {
 
-    public $data;
+    public static $data;
+    protected static $instance;
 
-    public function __construct()
+    protected function __construct()
     {
 
         $jsonData = file_get_contents(__DIR__ . '/../config.json');
-        $this->data = json_decode($jsonData, true);
+        static::$data = json_decode($jsonData, true);
 
+    }
+
+    /**
+     * @return Config
+     */
+    public static function getInstance(): Config
+    {
+
+        if (null !== static::$instance) {
+
+            return static::$instance;
+
+        } else {
+
+            static::$instance = new Config;
+
+            return static::$instance;
+
+        }
+
+    }
+
+    /**
+     * @return array
+     */
+    public function getSettings() :array
+    {
+        return static::$data;
     }
 
 }
