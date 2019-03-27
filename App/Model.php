@@ -79,16 +79,6 @@ abstract class Model
     public function update(): void
     {
 
-        if (null === $this->id) {
-            return;
-        }
-
-        $model = static::findById($this->id);
-
-        if (false === $model) {
-            return;
-        }
-
         $db = new Db;
 
         $props = get_object_vars($this);
@@ -119,16 +109,6 @@ abstract class Model
      */
     public function delete(): void
     {
-
-        if (null === $this->id) {
-            return;
-        }
-
-        $model = static::findById($this->id);
-
-        if (false === $model) {
-            return;
-        }
 
         $db = new Db;
         $sql = 'DELETE FROM ' . static::$table . ' WHERE id=:id';
