@@ -24,10 +24,14 @@ $content = !empty($_POST['content']) ? $_POST['content'] : null;
 
 if (null !== $id && null !== $title && null !== $content) {
 
+    if (false === $article) {
+        $article = new Article;
+    }
+
     $article->title = $title;
     $article->content = $content;
 
-    $article->update();
+    $article->save();
 
 }
 
