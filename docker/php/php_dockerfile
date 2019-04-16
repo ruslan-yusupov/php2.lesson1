@@ -1,3 +1,14 @@
 FROM php:7.3.2-fpm
 
+RUN mkdir /code
+
 RUN docker-php-ext-install mysqli pdo pdo_mysql && pecl install xdebug && docker-php-ext-enable xdebug
+
+ARG USER_UID
+
+RUN deluser www-data \
+    && addgroup --gid $USER_UID www-data \
+    && adduser --uid $USER_UID --ingroup www-data --disabled-login --gecos GECOS --home /home/www-data www-data
+
+RUN chmod -R 775 /code \
+	&& chown -R www-data:www-data /code
