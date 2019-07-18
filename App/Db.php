@@ -13,11 +13,10 @@ class Db
     public function __construct()
     {
         $config = Config::getInstance();
-        $settings = $config->getSettings();
 
-        $dsn = 'mysql:host=' . $settings['db']['host'] . ';dbname=' . $settings['db']['dbname'];
-        $userName = $settings['db']['username'];
-        $password = $settings['db']['password'];
+        $dsn = 'mysql:host=' . $config->data['db']['host'] . ';dbname=' . $config->data['db']['dbname'];
+        $userName = $config->data['db']['username'];
+        $password = $config->data['db']['password'];
 
         $this->dbh = new \PDO($dsn, $userName, $password);
     }

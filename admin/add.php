@@ -4,14 +4,11 @@ use App\Models\Article;
 
 require __DIR__ . '/../autoload.php';
 
-$title = !empty($_POST['title']) ? $_POST['title'] : null;
-$content = !empty($_POST['content']) ? $_POST['content'] : null;
-
-if (null !== $title && null !== $content) {
+if (!empty($_POST['title']) && !empty($_POST['content'])) {
 
     $article = new Article;
-    $article->title = $title;
-    $article->content = $content;
+    $article->title = $_POST['title'];
+    $article->content = $_POST['content'];
     $article->insert();
 
     header('Location: /admin/index.php');

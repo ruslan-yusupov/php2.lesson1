@@ -14,20 +14,20 @@ require __DIR__ . '/../autoload.php';
 $articleId = $_GET['id'];
 
 /**
- * @var \App\Models\Article $article
+ * @var Article $article
  */
 $article = Article::findById($articleId);
 
-$id = !empty($_POST['id']) ? $_POST['id'] : null;
-$title = !empty($_POST['title']) ? $_POST['title'] : null;
-$content = !empty($_POST['content']) ? $_POST['content'] : null;
+if (!empty($_POST['id']) && !empty($_POST['title']) && !empty($_POST['content'])) {
 
-if (null !== $id && null !== $title && null !== $content) {
+    if (false === $article) {
+        $article = new Article;
+    }
 
-    $article->title = $title;
-    $article->content = $content;
+    $article->title = $_POST['title'];
+    $article->content = $_POST['content'];
 
-    $article->update();
+    $article->save();
 
 }
 

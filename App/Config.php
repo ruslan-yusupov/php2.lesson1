@@ -5,7 +5,7 @@ namespace App;
 class Config
 {
 
-    protected static $data;
+    public $data;
     protected static $instance;
 
     /**
@@ -14,8 +14,7 @@ class Config
     protected function __construct()
     {
 
-        $jsonData = file_get_contents(__DIR__ . '/../config.json');
-        static::$data = json_decode($jsonData, true);
+        $this->data = include __DIR__ . '/../config.php';
 
     }
 
@@ -36,14 +35,6 @@ class Config
 
         return static::$instance;
 
-    }
-
-    /**
-     * @return array
-     */
-    public function getSettings(): array
-    {
-        return static::$data;
     }
 
 }
