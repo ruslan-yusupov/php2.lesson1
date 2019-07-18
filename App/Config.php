@@ -14,8 +14,7 @@ class Config
     protected function __construct()
     {
 
-        $jsonData = file_get_contents(__DIR__ . '/../config.json');
-        $this->data = json_decode($jsonData, true);
+        $this->data = include __DIR__ . '/../config.php';
 
     }
 
