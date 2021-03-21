@@ -26,7 +26,7 @@ abstract class Model
 
         $result = $db->query($sql, [':id' => $id], static::class);
 
-        return !empty($result) ? reset($result) : false ;
+        return !empty($result) ? reset($result) : false;
     }
 
 }
