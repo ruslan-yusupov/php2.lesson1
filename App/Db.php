@@ -2,14 +2,16 @@
 
 namespace App;
 
+use PDO;
+
 class Db
 {
 
-    protected $dbh;
+    protected PDO $dbh;
 
     public function __construct()
     {
-        $this->dbh = new \PDO('mysql:host=mysql;dbname=php2;', 'root', 'root');
+        $this->dbh = new PDO('mysql:host=mysql;dbname=db;', 'root', 'root');
     }
 
     public function query(string $sql, array $params = [], string $class = null): array
@@ -18,9 +20,9 @@ class Db
         $sth->execute($params);
 
         if (null === $class) {
-            $sth->setFetchMode(\PDO::FETCH_ASSOC);
+            $sth->setFetchMode(PDO::FETCH_ASSOC);
         } else {
-            $sth->setFetchMode(\PDO::FETCH_CLASS, $class);
+            $sth->setFetchMode(PDO::FETCH_CLASS, $class);
         }
 
         return $sth->FetchAll();

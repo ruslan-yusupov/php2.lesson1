@@ -1,7 +1,6 @@
 <?php
 
-function __autoload($class)
-{
+spl_autoload_register(function ($class) {
     $file = str_replace('\\', '/', $class) . '.php';
     require __DIR__ . '/' . $file;
-}
+});

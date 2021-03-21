@@ -1,16 +1,14 @@
-version: '3'
+version: '3.9'
 
 services:
     nginx:
         image: nginx:latest
-        container_name: nginx-container
+        container_name: nginx-profit-container
         ports:
             - '80:80'
         volumes:
-            - ./:/code
+            - ./:/home/www-data/php.local
             - ./docker/nginx/site.conf:/etc/nginx/conf.d/default.conf
-        networks:
-            - code-network
         depends_on:
             - php
 
@@ -18,30 +16,23 @@ services:
         build:
             context: ./docker/php/
             dockerfile: php_dockerfile
-        container_name: php-container
+        container_name: php-profit-container
         volumes:
-            - ./:/code
-        networks:
-            - code-network
+            - ./:/home/www-data/php.local
         depends_on:
           - mysql
 
     mysql:
-        image: 'mysql'
-        container_name: mysql-container
+        build:
+            context: ./docker/db/
+            dockerfile: mysql_dockerfile
+        container_name: mysql-profit-container
         ports:
             - '3306:3306'
-        volumes:
-            - ./docker/mysql:/var/lib/mysql
         command: 
           ['--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci','--default-authentication-plugin=mysql_native_password']
         environment:
-            MYSQL_ROOT_PASSWORD: root
-        networks:
-            code-network:
-                aliases: 
-                    - mysql
-
-networks:
-    code-network:
-        driver: bridge
+            MYSQL_DATABASE: ${MYSQL_DATABASE}
+            MYSQL_USER: ${MYSQL_USER}
+            MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}

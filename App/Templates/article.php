@@ -1,3 +1,11 @@
+<?php
+
+use App\Models\Article;
+
+/**
+ * @var Article $article
+ */
+?>
 <!doctype html>
 <html lang="ru">
 <head>
