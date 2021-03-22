@@ -1,2 +1,8 @@
 # PHP 2 / Lesson 2
-Homework
+##Homework
+
+### Launch
+```
+docker-compose up -d
+docker-compose exec php composer install
+```
