@@ -5,9 +5,9 @@ namespace App;
 abstract class Model
 {
 
-    protected static $table = '';
+    protected static string $table = '';
 
-    public $id;
+    public int $id;
 
     /**
      * @return array

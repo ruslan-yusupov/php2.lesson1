@@ -1,9 +1,11 @@
 {
+    "name": "php2/lessons",
+    "description": "php2 lessons",
     "require": {
         "ext-pdo": "*"
     },
 
     "require-dev": {
-        "symfony/var-dumper": "^4.3"
+        "symfony/var-dumper": "^5.2.3"
     }
 }

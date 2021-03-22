@@ -3,7 +3,7 @@
 return [
         'db' => [
             'host' => 'mysql',
-            'dbname' => 'php2',
+            'dbname' => 'db',
             'username' => 'root',
             'password' => 'root'
         ]

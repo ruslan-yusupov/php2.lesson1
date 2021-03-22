@@ -8,10 +8,10 @@ use App\Model;
 class Article extends Model
 {
 
-    protected static $table = 'news';
+    protected static string $table = 'news';
 
-    public $title;
-    public $content;
+    public string $title;
+    public string $content;
 
     public static function findLastNews(int $amount): array
     {

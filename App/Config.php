@@ -5,7 +5,7 @@ namespace App;
 class Config
 {
 
-    public $data;
+    public array $data;
     protected static $instance;
 
     /**
@@ -14,7 +14,17 @@ class Config
     protected function __construct()
     {
 
-        $this->data = include __DIR__ . '/../config.php';
+        $envData = file(__DIR__ . '/../.env', FILE_IGNORE_NEW_LINES);
+        $configData = [];
+
+        array_walk($envData, function ($value) use (&$configData) {
+            if (!empty($value)) {
+                $data = explode('=', $value);
+                $configData[$data[0]] = $data[1];
+            }
+        });
+
+        $this->data = $configData;
 
     }
 
@@ -22,7 +32,7 @@ class Config
     /**
      * @return static
      */
-    public static function getInstance()
+    public static function getInstance(): static
     {
 
         if (null !== static::$instance) {
