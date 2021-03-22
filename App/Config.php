@@ -13,16 +13,7 @@ class Config
      */
     protected function __construct()
     {
-        $envData = file(__DIR__ . '/../.env', FILE_IGNORE_NEW_LINES);
-        $configData = [];
-
-        foreach ($envData as $envDatum) {
-            if (!empty($envDatum)) {
-                $data = explode('=', $envDatum);
-                $configData[$data[0]] = $data[1];
-            }
-        }
-        $this->data = $configData;
+        $this->data = require_once __DIR__ . '/../config.php';
     }
 
 
