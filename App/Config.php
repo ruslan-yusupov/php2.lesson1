@@ -13,19 +13,16 @@ class Config
      */
     protected function __construct()
     {
-
         $envData = file(__DIR__ . '/../.env', FILE_IGNORE_NEW_LINES);
         $configData = [];
 
-        array_walk($envData, function ($value) use (&$configData) {
-            if (!empty($value)) {
-                $data = explode('=', $value);
+        foreach ($envData as $envDatum) {
+            if (!empty($envDatum)) {
+                $data = explode('=', $envDatum);
                 $configData[$data[0]] = $data[1];
             }
-        });
-
+        }
         $this->data = $configData;
-
     }
 
 
@@ -34,7 +31,6 @@ class Config
      */
     public static function getInstance(): static
     {
-
         if (null !== static::$instance) {
 
             return static::$instance;
@@ -44,7 +40,6 @@ class Config
         static::$instance = new static;
 
         return static::$instance;
-
     }
 
 }

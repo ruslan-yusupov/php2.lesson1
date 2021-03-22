@@ -18,16 +18,11 @@ use App\Models\Article;
     </title>
 </head>
 <body>
-
     <h1>Редактирование новости</h1>
     <?php
-
     if (false !== $article) { ?>
-
-        <form action="/admin/update.php?id=<?php echo $article->id; ?>" method="post">
-
+        <form action="/admin/update.php" method="post">
             <input type="hidden" name="id" value="<?php echo $article->id; ?>">
-
             <label for="title">
                 Заголовок
                 <br>
@@ -50,17 +45,12 @@ use App\Models\Article;
             </label>
             <br>
             <button type="submit">Редактировать</button>
-
         </form>
-
     <?php } else { ?>
-
         <p>Новость не найдена</p>
-
     <?php } ?>
-
     <p>
-        <a href="/admin/">Назад к списку</a>
+        <a href="/admin">Назад к списку</a>
     </p>
 </body>
 </html>

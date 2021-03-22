@@ -14,22 +14,19 @@ abstract class Model
      */
     public static function findAll(): array
     {
-
         $db = new Db;
 
         $sql = 'SELECT * FROM ' . static::$table;
 
         return $db->query($sql, [], static::class);
-
     }
 
     /**
      * @param int $id
      * @return object|bool
      */
-    public static function findById(int $id)
+    public static function findById(int $id): object|bool
     {
-
         $db = new Db;
 
         $sql = 'SELECT * FROM ' . static::$table . ' WHERE id = :id';
@@ -37,7 +34,6 @@ abstract class Model
         $result = $db->query($sql, [':id' => $id], static::class);
 
         return !empty($result) ? reset($result) : false;
-
     }
 
     /**
@@ -45,7 +41,6 @@ abstract class Model
      */
     public function insert(): void
     {
-
         $db = new Db;
 
         $props = get_object_vars($this);
@@ -70,7 +65,6 @@ abstract class Model
 
         $db->execute($sql, $data);
         $this->id = $db->lastInsertId();
-
     }
 
     /**
@@ -78,7 +72,6 @@ abstract class Model
      */
     public function update(): void
     {
-
         $db = new Db;
 
         $props = get_object_vars($this);
@@ -101,7 +94,6 @@ abstract class Model
             WHERE id=:id';
 
         $db->execute($sql, $data);
-
     }
 
     /**
@@ -109,12 +101,10 @@ abstract class Model
      */
     public function delete(): void
     {
-
         $db = new Db;
         $sql = 'DELETE FROM ' . static::$table . ' WHERE id=:id';
 
         $db->execute($sql, [':id' => $this->id]);
-
     }
 
     /**
@@ -122,13 +112,11 @@ abstract class Model
      */
     public function save(): void
     {
-
         if (null !== $this->id) {
             $this->update();
         } else {
             $this->insert();
         }
-
     }
 
 }
