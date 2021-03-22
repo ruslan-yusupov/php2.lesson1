@@ -1,4 +1,7 @@
-# PHP 2
-Homework
+# PHP 2 / Lesson 1
+##Homework
 
-Lesson 1
+### Launch
+```
+docker-compose up -d
+```
