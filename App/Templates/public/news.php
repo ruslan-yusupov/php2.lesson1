@@ -1,4 +1,12 @@
-<!doctype html>
+<?php
+
+use App\Models\Article;
+
+/**
+ * @var array $articles
+ */
+
+?><!doctype html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
@@ -16,6 +24,9 @@
 
         <ul>
         <?php
+        /**
+         * @var Article $article
+         */
         foreach ($articles as $article) { ?>
             <li>
                 <a href="/article.php?id=<?php echo $article->id; ?>">

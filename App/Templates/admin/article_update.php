@@ -1,4 +1,12 @@
-<!doctype html>
+<?php
+
+use App\Models\Article;
+
+/**
+ * @var Article $article
+ */
+
+?><!doctype html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
